@@ -8,7 +8,7 @@
 
 extern "C" {
 int APS5_VABI sceRudpInit_nid_postfix(void*, int);
-int APS5_VABI sceRudpTerminate();
+int APS5_VABI sceRudpEnd();
 int APS5_VABI sceRudpProcessEvents();
 int APS5_VABI sceRudpNetFlush();
 int APS5_VABI sceRudpGetMaxSegmentSize();
@@ -32,7 +32,7 @@ int main() {
     CHECK(sceRudpInit_nid_postfix(pool, sizeof(pool)) == 0);
     CHECK(sceRudpProcessEvents() == 0);
     CHECK(sceRudpNetFlush() == 0);
-    CHECK(sceRudpTerminate() == 0);
+    CHECK(sceRudpEnd() == 0);
 
     for (const auto call : {&sceRudpNetReceived, &sceRudpGetMaxSegmentSize}) {
         bool threw = false;
